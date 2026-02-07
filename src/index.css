@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap');
+
+:root {
+  /* Color Palette - Warm noir with amber accents */
+  --color-bg: #0a0908;
+  --color-surface: #151311;
+  --color-surface-elevated: #1e1b18;
+  --color-border: #2a2622;
+  --color-text: #f5f0e8;
+  --color-text-muted: #9a928a;
+  --color-accent: #e8a849;
+  --color-accent-dim: #c78b2f;
+  --color-accent-glow: rgba(232, 168, 73, 0.15);
+  
+  /* Typography */
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* Sizing */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+code {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.875em;
+  background: var(--color-surface-elevated);
+  padding: 0.2em 0.5em;
+  border-radius: var(--radius-sm);
+  color: var(--color-accent);
+}
+
+#root {
+  min-height: 100vh;
+}
+
