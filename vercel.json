@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "buildCommand": "cd dashboard && npm run build",
+  "outputDirectory": "dashboard/.next",
+  "installCommand": "cd dashboard && npm install",
+  "framework": "nextjs",
+  "regions": ["iad1"],
+  "env": {
+    "NEXT_PUBLIC_GESTURE_WS_URL": "@gesture_ws_url",
+    "NEXT_PUBLIC_API_URL": "@api_url",
+    "NEXT_PUBLIC_MCP_SERVERS": "@mcp_servers"
+  }
+}
+

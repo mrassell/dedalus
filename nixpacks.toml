@@ -1,0 +1,16 @@
+# Nixpacks configuration for Railway/Render deployment
+[phases.setup]
+nixPkgs = ["python311", "nodejs-20_x"]
+
+[phases.install]
+cmds = [
+    "cd backend && pip install -r requirements.txt",
+    "cd dashboard && npm ci"
+]
+
+[phases.build]
+cmds = ["cd dashboard && npm run build"]
+
+[start]
+cmd = "cd backend && python relief_ops.py"
+

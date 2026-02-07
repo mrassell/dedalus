@@ -1,0 +1,55 @@
+# Render Blueprint for Aegis-1 Multi-Service Deployment
+
+services:
+  # Next.js Dashboard (Static Site or Web Service)
+  - type: web
+    name: aegis-dashboard
+    env: node
+    buildCommand: cd dashboard && npm install && npm run build
+    startCommand: cd dashboard && npm start
+    rootDir: dashboard
+    envVars:
+      - key: NEXT_PUBLIC_GESTURE_WS_URL
+        sync: false
+      - key: NEXT_PUBLIC_API_URL
+        sync: false
+      - key: NEXT_PUBLIC_MCP_SERVERS
+        sync: false
+    healthCheckPath: /
+
+  # Python MCP Server (Backend)
+  - type: web
+    name: aegis-mcp-server
+    env: python
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: cd backend && python relief_ops.py
+    rootDir: backend
+    envVars:
+      - key: HOST
+        value: 0.0.0.0
+      - key: PORT
+        fromService:
+          type: web
+          name: aegis-mcp-server
+          property: port
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+
+  # WebSocket Gesture Controller
+  - type: web
+    name: aegis-gesture-controller
+    env: python
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: cd backend && python gesture_controller.py
+    rootDir: backend
+    envVars:
+      - key: GESTURE_WS_HOST
+        value: 0.0.0.0
+      - key: GESTURE_WS_PORT
+        fromService:
+          type: web
+          name: aegis-gesture-controller
+          property: port
+
